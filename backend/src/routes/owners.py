@@ -76,10 +76,10 @@ def get_owner_by_id(id: str):
         return jsonify({'error': ERRORS.get('url_invalid_id')}), 400
 
     owner = db.session.execute(
-        db.select(Owner).where(Owner.id == int(id))
-    ).fetchone()
+        db.select(Owner).where(Owner.id == id)
+    ).scalar_one()
 
     if owner == None:
         return jsonify({'error': ERRORS.get('user_not_exist')}), 400
 
-    return jsonify(owner[0].toJSON()), 200
+    return jsonify(owner.toJSON()), 200
