@@ -6,5 +6,11 @@ ERRORS = {
     "phone": "PHONE_INVALID",
     "mail": "MAIL_INVALID",
     "url_invalid_id": "URL_INVALID_ID",
-    "user_not_exist": "USER_NOT_EXISTS"
+    "user_not_exist": "USER_NOT_EXISTS",
+    "plate": "INVALID_PLATE",
+    "brand": "INVALID_BRAND",
+    "model": "INVALID_MODEL",
+    "year": "INVALID_YEAR",
+    "color": "INVALID_COLOR",
+    "owner": "INVALID_OWNER"
 }
