@@ -8,7 +8,11 @@ vehicles = Blueprint('vehicles', __name__)
 
 @vehicles.get('/vehicles')
 def get_vehicles():
-    return 'Returning all vehicles', 200
+    vehicles = db.session.execute(
+        db.select(Vehicle)
+    ).scalars().all()
+    vehicles = map(lambda o: o.toJSON(), vehicles)
+    return jsonify(list(vehicles)), 200
 
 
 @vehicles.post('/vehicles')
