@@ -2,7 +2,7 @@ from utils.database import db
 from datetime import datetime
 
 
-class Vehicles(db.Model):
+class Vehicle(db.Model):
     __tablename__ = 'vehicles'
 
     id = db.Column(db.Integer, primary_key=True)

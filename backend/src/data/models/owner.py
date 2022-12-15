@@ -1,7 +1,7 @@
 from utils.database import db
 
 
-class Owners(db.Model):
+class Owner(db.Model):
     __tablename__ = 'owners'
 
     id = db.Column(db.Integer, primary_key=True)
