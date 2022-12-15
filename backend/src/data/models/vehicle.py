@@ -24,3 +24,15 @@ class Vehicle(db.Model):
         self.owner = owner
         self.notes = ''
         self.register_date = datetime.now()
+
+    def toJSON(self) -> dict:
+        return {
+            "plate": self.plate,
+            "brand": self.brand,
+            "model": self.model,
+            "year": self.year,
+            "color": self.color,
+            "owner": self.color,
+            "notes": self.notes.split(','),
+            "register_date": self.register_date
+        }
