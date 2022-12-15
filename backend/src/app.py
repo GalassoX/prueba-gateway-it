@@ -2,6 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 from utils.database import db
 from routes.owners import owners
+from routes.vehicles import vehicles
 
 app = Flask(__name__)
 
@@ -14,6 +15,7 @@ CORS(app)
 
 # -> Routes
 app.register_blueprint(owners)
+app.register_blueprint(vehicles)
 
 if __name__ == "__main__":
     app.run(debug=True)
