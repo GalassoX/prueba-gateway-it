@@ -1,6 +1,8 @@
+from data.models.vehicle import Vehicle
 from flask import Blueprint, request, jsonify
 from utils.database import db
 from data.models.owner import Owner
+from data.models.vehicle import Vehicle
 from data.errors import ERRORS
 
 owners = Blueprint('owners', __name__)
@@ -83,3 +85,17 @@ def get_owner_by_id(id: str):
         return jsonify({'error': ERRORS.get('user_not_exist')}), 400
 
     return jsonify(owner.toJSON()), 200
+
+
+@owners.get('/owners/<id>/vehicles')
+def get_owner_vehicles(id: str):
+    if not id.isnumeric():
+        return jsonify({'error': ERRORS.get('url_invalid_id')}), 400
+
+    vehicles = db.session.execute(
+        db.select(Owner).where(Vehicle.owner == id)
+    ).scalars().all()
+
+    vehicles = map(lambda o: o.toJSON(), vehicles)
+
+    return jsonify(list(vehicles)), 200
