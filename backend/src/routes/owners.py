@@ -10,12 +10,9 @@ owners = Blueprint('owners', __name__)
 
 @owners.get('/owners')
 def get_owners():
-    result = db.session.execute(db.select(Owner))
-    owners = []
-    for owner in result.scalars():
-        owners.append(owner.toJSON())
-
-    return jsonify(owners), 200
+    result = db.session.execute(db.select(Owner)).scalars().all()
+    owners = map(lambda o: o.toJSON(), result)
+    return jsonify(list(owners)), 200
 
 
 @owners.post('/owners')
