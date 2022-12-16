@@ -2,10 +2,10 @@ import React from 'react'
 
 import styles from './Modal.module.css';
 
-const Modal = ({ isOpen, children }) => {
+const Modal = ({ isOpen, children, style }) => {
     return (
         <div className={styles.modal} style={{ "display": isOpen ? "block" : "none" }}>
-            <div className={styles.modal_content}>
+            <div className={styles.modal_content} style={style}>
                 {children}
             </div>
         </div>
