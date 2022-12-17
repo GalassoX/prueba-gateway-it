@@ -60,6 +60,13 @@ def register_owner():
         else:
             errors.append(ERRORS.get("mail"))
 
+    exists = db.session.execute(
+        db.select(Owner).where(Owner.document == document)
+    ).scalars().all()
+
+    if len(exists):
+        errors.append(ERRORS.get("user_exists"))
+
     if len(errors):
         return jsonify({"error": errors}), 400
 

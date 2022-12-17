@@ -12,5 +12,6 @@ ERRORS = {
     "model": "INVALID_MODEL",
     "year": "INVALID_YEAR",
     "color": "INVALID_COLOR",
-    "owner": "INVALID_OWNER"
+    "owner": "INVALID_OWNER",
+    "user_exists": "USER_EXISTS"
 }
