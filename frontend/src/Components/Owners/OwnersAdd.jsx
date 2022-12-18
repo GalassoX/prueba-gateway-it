@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import Modal from '../Modal/Modal';
 import typeDocuments from '../../data/type_docs.json';
-
-import styles from './Owners.module.css';
 import { createOwner } from '../../service/owners';
 import getError from '../../data/getError';
+
+import styles from './Owners.module.css';
 
 const sendCreateOwner = async (data) => {
     const response = await (await createOwner(data)).json();

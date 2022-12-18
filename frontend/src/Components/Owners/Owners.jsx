@@ -1,6 +1,3 @@
-import { useEffect, useState } from 'react'
-import { getOwners } from '../../service/owners';
-
 import OwnersTable from './OwnersTable';
 import styles from './Owners.module.css';
 import OwnersAdd from './OwnersAdd';

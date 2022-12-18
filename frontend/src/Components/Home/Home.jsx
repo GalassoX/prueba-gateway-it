@@ -1,10 +1,13 @@
-import React from 'react'
 import { Link } from 'react-router-dom';
 
 const links = [
     {
         text: 'Ver propietarios registrados',
         to: '/propietarios'
+    },
+    {
+        text: 'Ver los vehículos registrados',
+        to: '/vehiculos'
     }
 ]
 
