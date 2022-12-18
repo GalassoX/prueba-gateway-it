@@ -1,0 +1,17 @@
+{
+    "TYPE_DOCUMENT_INVALID": "Tipo de documento inválido",
+    "DOCUMENT_INVALID": "Documento inválido",
+    "NAME_INVALID": "Nombre inválido",
+    "ADDRESS_INVALID": "Dirección inválida",
+    "PHONE_INVALID": "Teléfono inválido",
+    "MAIL_INVALID": "Correo electronico inválido",
+    "URL_INVALID_ID": "ID proporcionada inválida",
+    "USER_NOT_EXISTS": "Ese usuario no existe",
+    "INVALID_PLATE": "Placa inválida",
+    "INVALID_BRAND": "Marca inválida",
+    "INVALID_MODEL": "Modelo inválido",
+    "INVALID_YEAR": "Año inválido",
+    "INVALID_COLOR": "Color inválido",
+    "INVALID_OWNER": "Dueño inválido",
+    "USER_EXISTS": "Ese usuario ya se encuentra registrado"
+}
