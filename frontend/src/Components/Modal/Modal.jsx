@@ -21,8 +21,8 @@ Modal.Header = ({ children, onClose }) => {
     )
 }
 
-Modal.Body = ({ children }) => {
-    return <div className={styles.body}>{children}</div>
+Modal.Body = ({ children, style }) => {
+    return <div className={styles.body} style={style}>{children}</div>
 }
 
 export default Modal;
