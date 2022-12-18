@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import useFetchOwners from '../../hooks/useFetchOwners';
+import Loading from '../Loading/Loading';
 import OwnerCard from './OwnerCard';
 
 import styles from './Owners.module.css';
@@ -53,7 +54,7 @@ const OwnersTable = () => {
     }, [owners])
 
     if (isFetching) {
-        return <h1>Loading...</h1>
+        return <Loading />
     }
 
     return (
