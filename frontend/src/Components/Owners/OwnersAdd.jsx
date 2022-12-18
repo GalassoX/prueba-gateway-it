@@ -40,7 +40,6 @@ const OwnersAdd = () => {
                     setErrors(response.error);
                     return;
                 }
-                // console.log(response)
                 window.location.reload();
             });
     }
