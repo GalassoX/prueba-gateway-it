@@ -88,7 +88,6 @@ def get_owner_by_id(id: str):
     if len(owner) <= 0:
         return jsonify({'error': ERRORS.get('user_not_exist')}), 400
 
-    print(owner)
     return jsonify(owner[0].toJSON()), 200
 
 
