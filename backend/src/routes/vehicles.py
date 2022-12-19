@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 from utils.database import db
+from data.models.owner import Owner
 from data.models.vehicle import Vehicle
 from data.errors import ERRORS
 
@@ -50,7 +51,7 @@ def register_vehicle():
 
         if 'year' in data:
             year = data['year']
-            if year < 1800:
+            if int(year) < 1800:
                 errors.append(ERRORS.get("year"))
         else:
             errors.append(ERRORS.get("year"))
@@ -63,14 +64,21 @@ def register_vehicle():
         if 'owner' in data:
             owner: str = data['owner']
             if not owner.isnumeric():
-                errors.append(ERRORS.get("year"))
+                errors.append(ERRORS.get("document"))
         else:
-            errors.append(ERRORS.get("year"))
+            errors.append(ERRORS.get("document"))
+
+    exists = db.session.execute(
+        db.select(Owner).where(Owner.document == owner)
+    ).fetchone()
+
+    if len(exists) <= 0:
+        errors.append(ERRORS.get('user_not_exist'))
 
     if len(errors):
         return jsonify({"error": errors}), 400
 
-    new_vehicle = Vehicle(plate, brand, model, year, color, owner)
+    new_vehicle = Vehicle(plate, brand, model, year, color, exists[0].id)
     db.session.add(new_vehicle)
     db.session.commit()
     return jsonify(new_vehicle.toJSON()), 201

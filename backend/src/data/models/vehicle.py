@@ -13,7 +13,7 @@ class Vehicle(db.Model):
     color = db.Column(db.Text)
     owner = db.Column(db.Integer)
     notes = db.Column(db.String)
-    register_date = db.Column(db.Time)
+    register_date = db.Column(db.TIMESTAMP, server_default="CURRENT_TIMESTAMP")
 
     def __init__(self, plate, brand, model, year, color, owner):
         self.plate = plate
@@ -23,10 +23,10 @@ class Vehicle(db.Model):
         self.color = color
         self.owner = owner
         self.notes = ''
-        self.register_date = datetime.now()
 
     def toJSON(self) -> dict:
         return {
+            "id": self.id,
             "plate": self.plate,
             "brand": self.brand,
             "model": self.model,
