@@ -32,7 +32,7 @@ class Vehicle(db.Model):
             "model": self.model,
             "year": self.year,
             "color": self.color,
-            "owner": self.color,
+            "owner": self.owner,
             "notes": self.notes.split(','),
             "register_date": self.register_date
         }
