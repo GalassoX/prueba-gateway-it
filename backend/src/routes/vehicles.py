@@ -82,3 +82,29 @@ def register_vehicle():
     db.session.add(new_vehicle)
     db.session.commit()
     return jsonify(new_vehicle.toJSON()), 201
+
+
+@vehicles.get('/vehicles/<id>')
+def get_vehicle_by_id(id: str):
+    if not id.isnumeric():
+        return jsonify({'error': ERRORS.get('url_invalid_id')}), 400
+
+    result = db.session.execute(
+        db.select(Vehicle).where(Vehicle.id == id)
+    ).fetchone()
+
+    if result == None:
+        return jsonify({'error': ERRORS.get('vehicle_not_exists')}), 400
+
+    vehicle = result[0]
+
+    result = db.session.execute(
+        db.select(Owner).where(Owner.id == vehicle.id)
+    ).fetchone()
+
+    owner = result[0]
+
+    obj = vehicle.toJSON()
+    obj['owner'] = owner.toJSON()
+
+    return jsonify(obj), 200
