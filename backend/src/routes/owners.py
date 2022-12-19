@@ -83,12 +83,13 @@ def get_owner_by_id(id: str):
 
     owner = db.session.execute(
         db.select(Owner).where(Owner.id == id)
-    ).scalar_one()
+    ).scalars().all()
 
-    if owner == None:
+    if len(owner) <= 0:
         return jsonify({'error': ERRORS.get('user_not_exist')}), 400
 
-    return jsonify(owner.toJSON()), 200
+    print(owner)
+    return jsonify(owner[0].toJSON()), 200
 
 
 @owners.get('/owners/<id>/vehicles')
@@ -97,7 +98,7 @@ def get_owner_vehicles(id: str):
         return jsonify({'error': ERRORS.get('url_invalid_id')}), 400
 
     vehicles = db.session.execute(
-        db.select(Owner).where(Vehicle.owner == id)
+        db.select(Vehicle).where(Vehicle.owner == id)
     ).scalars().all()
 
     vehicles = map(lambda o: o.toJSON(), vehicles)
