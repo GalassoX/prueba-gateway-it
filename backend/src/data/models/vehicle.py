@@ -1,5 +1,4 @@
 from utils.database import db
-from datetime import datetime
 
 
 class Vehicle(db.Model):
@@ -12,7 +11,6 @@ class Vehicle(db.Model):
     year = db.Column(db.Integer)
     color = db.Column(db.Text)
     owner = db.Column(db.Integer)
-    notes = db.Column(db.String)
     register_date = db.Column(db.TIMESTAMP, server_default="CURRENT_TIMESTAMP")
 
     def __init__(self, plate, brand, model, year, color, owner):
@@ -22,7 +20,6 @@ class Vehicle(db.Model):
         self.year = year
         self.color = color
         self.owner = owner
-        self.notes = ''
 
     def toJSON(self) -> dict:
         return {
@@ -33,6 +30,5 @@ class Vehicle(db.Model):
             "year": self.year,
             "color": self.color,
             "owner": self.owner,
-            "notes": self.notes.split(','),
             "register_date": self.register_date
         }
