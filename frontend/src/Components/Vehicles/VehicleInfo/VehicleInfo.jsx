@@ -30,7 +30,7 @@ const VehicleInfo = () => {
                         <h3>Observaciones</h3>
                         <VehicleAddNote vehicleId={id} />
                     </div>
-                    {vehicle.notes.length < 0
+                    {vehicle.notes.length > 0
                         ? <ol className={styles.notes_list}>
                             {vehicle.notes.map((n, i) => <li key={i}>{n.text}</li>)}
                         </ol>
