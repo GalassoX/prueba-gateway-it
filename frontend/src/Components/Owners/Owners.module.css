@@ -63,13 +63,12 @@
     background-color: #f2f2f2;
 }
 
-.table_row:hover {
-    background-color: #e2e2e2;
-    cursor: pointer;
+.table_row:nth-child(odd) {
+    background-color: #ffffff;
 }
 
-.table_row:active {
-    background-color: #cecece;
+.table_row:hover {
+    background-color: #e2e2e2;
     cursor: pointer;
 }
 

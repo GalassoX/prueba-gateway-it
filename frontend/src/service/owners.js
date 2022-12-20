@@ -11,3 +11,7 @@ export const getOwnerById = (ownerId) => {
 export const createOwner = (data) => {
     return postFetch(`${API_URL}/owners`, data);
 }
+
+export const getOwnerVehicles = (ownerId) => {
+    return fetch(`${API_URL}/owners/${ownerId}/vehicles`);
+}

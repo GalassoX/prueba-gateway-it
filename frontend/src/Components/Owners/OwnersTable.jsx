@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import useFetchOwners from '../../hooks/useFetchOwners';
 import Loading from '../Loading/Loading';
-import OwnerCard from './OwnerCard';
 
 import styles from './Owners.module.css';
 
@@ -11,7 +11,6 @@ const OwnersTable = () => {
     const [result, setResult] = useState({
         query: '', type: 1, result: owners
     });
-    const [ownerId, setOwnerId] = useState(0);
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
@@ -80,22 +79,25 @@ const OwnersTable = () => {
                         <th className={styles.table_head}>Dirección</th>
                         <th className={styles.table_head}>Teléfono</th>
                         <th className={styles.table_head}>Correo</th>
+                        <th className={styles.table_head}>Opciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     {result.result.map((owner, i) => (
-                        <tr key={owner.id} className={styles.table_row} onClick={(e) => setOwnerId(owner.id)}>
+                        <tr key={owner.id} className={styles.table_row}>
                             <td>{owner.id}</td>
                             <td>{owner.name}</td>
                             <td>{owner.document}</td>
                             <td>{owner.address}</td>
                             <td>{owner.phone}</td>
                             <td>{owner.mail}</td>
+                            <td>
+                                <Link to={`/propietarios/${owner.id}`}>Ver información</Link>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
-            <OwnerCard ownerId={ownerId} setOwnerId={setOwnerId} />
         </>
     )
 }
