@@ -14,5 +14,7 @@ ERRORS = {
     "color": "INVALID_COLOR",
     "owner": "INVALID_OWNER",
     "user_exists": "USER_EXISTS",
-    "vehicle_not_exists": "VEHICLE_NOT_EXISTS"
+    "vehicle_not_exists": "VEHICLE_NOT_EXISTS",
+    "note_short": "NOTE_IS_SHORT",
+    "invalid_note": "INVALID_NOTE"
 }

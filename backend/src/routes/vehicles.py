@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 from utils.database import db
 from data.models.owner import Owner
 from data.models.vehicle import Vehicle
+from data.models.vehicle_note import VehicleNote
 from data.errors import ERRORS
 
 vehicles = Blueprint('vehicles', __name__)
@@ -9,9 +10,7 @@ vehicles = Blueprint('vehicles', __name__)
 
 @vehicles.get('/vehicles')
 def get_vehicles():
-    vehicles = db.session.execute(
-        db.select(Vehicle)
-    ).scalars().all()
+    vehicles = Vehicle.query.all()
     vehicles = map(lambda o: o.toJSON(), vehicles)
     return jsonify(list(vehicles)), 200
 
@@ -89,22 +88,50 @@ def get_vehicle_by_id(id: str):
     if not id.isnumeric():
         return jsonify({'error': ERRORS.get('url_invalid_id')}), 400
 
-    result = db.session.execute(
-        db.select(Vehicle).where(Vehicle.id == id)
-    ).fetchone()
+    vehicle = Vehicle.query.get(id)
 
-    if result == None:
+    if vehicle == None:
         return jsonify({'error': ERRORS.get('vehicle_not_exists')}), 400
 
-    vehicle = result[0]
+    owner = Owner.query.get(vehicle.owner)
 
-    result = db.session.execute(
-        db.select(Owner).where(Owner.id == vehicle.id)
-    ).fetchone()
-
-    owner = result[0]
+    notes = db.session.execute(
+        db.select(VehicleNote).where(VehicleNote.vehicle == id)
+    ).scalars().all()
 
     obj = vehicle.toJSON()
     obj['owner'] = owner.toJSON()
+    obj['notes'] = list(map(lambda o: o.toJSON(), notes))
 
     return jsonify(obj), 200
+
+
+@vehicles.post('/vehicles/<id>/notes')
+def add_vehicle_note(id: str):
+    if not id.isnumeric():
+        return jsonify({'error': ERRORS.get('url_invalid_id')}), 400
+
+    note = None
+
+    data = request.json
+    errors = []
+    if data:
+        if 'note' in data:
+            note = data['note']
+            if len(note) < 4:
+                errors.append(ERRORS.get('note_short'))
+        else:
+            errors.append(ERRORS.get('invalid_note'))
+
+    if len(errors):
+        return jsonify({"error": errors}), 400
+
+    vehicle = Vehicle.query.get(id)
+    if vehicle == None:
+        return jsonify({'error': ERRORS.get('vehicle_not_exists')}), 400
+
+    new_note = VehicleNote(vehicle.id, note)
+    db.session.add(new_note)
+    db.session.commit()
+
+    return jsonify(new_note.toJSON()), 201
