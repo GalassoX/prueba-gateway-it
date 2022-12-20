@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import NavBar from '../NavBar/NavBar';
 
 const links = [
     {
@@ -14,6 +15,7 @@ const links = [
 const Home = () => {
     return (
         <>
+            <NavBar />
             <h1>Bienvenido al Registro de vehículos</h1>
             {links.map((l, i) => (
                 <Link to={l.to}>{l.text}</Link>
