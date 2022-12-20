@@ -1,0 +1,54 @@
+.input_field {
+    margin: 15px;
+}
+
+.input_field p {
+    text-align: start;
+}
+
+.input_field textarea {
+    margin: 1em 0;
+    padding: .5em;
+    min-width: 400px;
+    min-height: 200px;
+    outline: none;
+}
+
+.btn_submit {
+    padding: .5em;
+    font-size: 18px;
+}
+
+.main {
+    padding: 50px;
+}
+
+.main>div {
+    padding: 2em;
+    background-color: white;
+    border: 1px solid #e9e9e9;
+    border-radius: 15px;
+    box-shadow: 0 10px 10px 0.5px rgba(0, 0, 0, 0.2);
+    margin-bottom: 2em;
+}
+
+.main>div>p {
+    margin: 1em;
+}
+
+.notes_title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.notes_list {
+    margin: 2em;
+}
+
+.notes_list li::marker {
+    font-weight: bold;
+}
+
+.no_notes {
+    font-style: italic;
+}

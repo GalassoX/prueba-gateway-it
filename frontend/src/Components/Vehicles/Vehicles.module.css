@@ -1,0 +1,120 @@
+.description {
+    margin: 2em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.table {
+    margin: 2em;
+}
+
+/* ---| OwnersTable |--- */
+.table_search {
+    margin: 1em;
+}
+
+.table_search form {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.table_search input {
+    outline: none;
+    width: 25%;
+    padding: .5em;
+    margin-inline: 1em;
+}
+
+.table_search select {
+    padding: .5em;
+}
+
+.table_search button {
+    padding: .5em;
+}
+
+.table_main {
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.table_head_row {
+    background-color: #f2f2f2;
+}
+
+.table_head_row>th {
+    padding: 1em;
+    border: 1px solid #cecece;
+}
+
+.table_head {
+    border: 1px solid #cecece;
+}
+
+.table_row>td {
+    padding: 1em;
+    border: 1px solid #cecece;
+    width: max-content;
+    text-overflow: ellipsis;
+}
+
+.table_row:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.table_row:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.table_row:hover {
+    background-color: #e2e2e2;
+    cursor: pointer;
+}
+
+/* ---| OwnerAdd |--- */
+.input_field {
+    margin: 15px;
+}
+
+.input_field p {
+    text-align: start;
+}
+
+.input_field input {
+    margin: 1em 0;
+    padding: .5em;
+    width: 80%;
+    outline: none;
+}
+
+.input_field select {
+    padding: .5em;
+    outline: none;
+}
+
+.btn_submit {
+    padding: .5em;
+    font-size: 18px;
+}
+
+.input_field_flex {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px;
+}
+
+.input_field_flex p {
+    text-align: start;
+}
+
+.input_field_flex input {
+    margin: 1em 0;
+    padding: .5em;
+    width: 100%;
+    outline: none;
+}
+
+.txt_error {
+    color: red;
+}
