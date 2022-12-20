@@ -15,8 +15,36 @@ const VehiclesTable = () => {
         setResult({ ...result, result: vehicles });
     }, [vehicles])
 
-    const handleSearchSubmit = () => {
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        const form = new FormData(e.target);
+        const search = form.get('query'), type = form.get('type');
+        let results = [];
 
+        switch (type) {
+            case '1':
+                results = result.result.filter(v => v.brand.includes(search))
+                break;
+
+            case '2':
+                results = result.result.filter(v => v.model.includes(search))
+                break;
+
+            case '3':
+                results = result.result.filter(v => v.plate.toLowerCase().includes(search))
+                break;
+
+            default: break;
+        }
+
+        if (!search) {
+            results = vehicles;
+        }
+        setResult({
+            query: search,
+            type: type,
+            result: results
+        });
     }
 
 

@@ -1,6 +1,8 @@
-import { Link, useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import useFetchOwnerById from '../../../hooks/useFetchOwnerById';
 import useFetchOwnerVehicles from '../../../hooks/useFetchOwnerVehicles';
+import useLogged from '../../../hooks/useLogged';
 import Loading from '../../Loading/Loading';
 import NavBar from '../../NavBar/NavBar';
 
@@ -8,9 +10,17 @@ import styles from './OwnerInfo.module.css';
 
 const OwnerInfo = () => {
     const { id } = useParams();
+    const { isLogged } = useLogged();
+    const navigate = useNavigate();
 
     const vehicle = useFetchOwnerVehicles(id);
     const owner = useFetchOwnerById(id);
+
+    useEffect(() => {
+        if (!isLogged) {
+            navigate('/auth')
+        }
+    }, []);
 
     if (vehicle.isFetching || owner.isFetching) return <Loading />
 

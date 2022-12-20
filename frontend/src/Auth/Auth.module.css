@@ -1,0 +1,61 @@
+.main {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+}
+
+.main>div {
+    text-align: center;
+    background-color: white;
+    border-radius: 15px;
+    padding: 1em;
+    width: 40%;
+    box-shadow: 0 10px 10px 0.5px rgba(0, 0, 0, 0.2);
+}
+
+.input_field {
+    margin: 15px;
+}
+
+.input_field p {
+    text-align: start;
+}
+
+.input_field input {
+    margin: 1em 0;
+    padding: .5em;
+    width: 80%;
+    outline: none;
+}
+
+.input_field select {
+    padding: .5em;
+    outline: none;
+}
+
+.btn_submit {
+    padding: .5em;
+    font-size: 18px;
+}
+
+.input_field_flex {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px;
+}
+
+.input_field_flex p {
+    text-align: start;
+}
+
+.input_field_flex input {
+    margin: 1em 0;
+    padding: .5em;
+    width: 100%;
+    outline: none;
+}
+
+.txt_error {
+    color: red;
+}

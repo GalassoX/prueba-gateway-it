@@ -3,8 +3,20 @@ import VehiclesAdd from './VehiclesAdd';
 
 import styles from './Vehicles.module.css';
 import NavBar from '../NavBar/NavBar';
+import useLogged from '../../hooks/useLogged';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Vehicles = () => {
+    const { isLogged } = useLogged();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!isLogged) {
+            navigate('/auth')
+        }
+    }, [])
+
     return (
         <>
             <NavBar />

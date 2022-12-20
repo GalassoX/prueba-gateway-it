@@ -1,4 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import Auth from './Auth/Auth';
+import Logout from './Auth/Logout';
 import NotFound from './Components/404';
 import Home from './Components/Home/Home';
 import OwnerInfo from './Components/Owners/OwnerInfo/OwnerInfo';
@@ -12,6 +14,8 @@ const router = createBrowserRouter([
     { path: '/propietarios/:id', element: <OwnerInfo /> },
     { path: '/vehiculos', element: <Vehicles /> },
     { path: '/vehiculos/:id', element: <VehicleInfo />, },
+    { path: '/auth', element: <Auth /> },
+    { path: '/cerrar', element: <Logout /> },
     { path: '*', element: <NotFound /> },
 ]);
 

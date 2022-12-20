@@ -1,6 +1,7 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import useFetchVehicleById from '../../../hooks/useFetchVehicleById';
+import useLogged from '../../../hooks/useLogged';
 import Loading from '../../Loading/Loading';
 import NavBar from '../../NavBar/NavBar';
 import VehicleAddNote from './VehicleAddNote';
@@ -9,8 +10,16 @@ import styles from './VehicleInfo.module.css';
 
 const VehicleInfo = () => {
     const { id } = useParams();
+    const { isLogged } = useLogged();
+    const navigate = useNavigate();
 
     const { vehicle, isFetching } = useFetchVehicleById(id);
+
+    useEffect(() => {
+        if (!isLogged) {
+            navigate('/auth')
+        }
+    }, []);
 
     if (isFetching) return <Loading />
 

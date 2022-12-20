@@ -17,9 +17,13 @@ const Home = () => {
         <>
             <NavBar />
             <h1>Bienvenido al Registro de vehículos</h1>
-            {links.map((l, i) => (
-                <Link to={l.to}>{l.text}</Link>
-            ))}
+            <ul>
+                {links.map((l, i) => (
+                    <li key={i}>
+                        <Link to={l.to}>{l.text}</Link>
+                    </li>
+                ))}
+            </ul>
         </>
     )
 }

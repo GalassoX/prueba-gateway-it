@@ -16,5 +16,6 @@ ERRORS = {
     "user_exists": "USER_EXISTS",
     "vehicle_not_exists": "VEHICLE_NOT_EXISTS",
     "note_short": "NOTE_IS_SHORT",
-    "invalid_note": "INVALID_NOTE"
+    "invalid_note": "INVALID_NOTE",
+    "password": "INVALID_PASSWORD"
 }

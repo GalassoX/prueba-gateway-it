@@ -16,5 +16,6 @@
     "USER_EXISTS": "Ese usuario ya se encuentra registrado",
     "VEHICLE_NOT_EXISTS": "Ese vehículo no existe",
     "NOTE_IS_SHORT": "La nota es demasiado corta",
-    "INVALID_NOTE": "Texto de la nota inválido"
+    "INVALID_NOTE": "Texto de la nota inválido",
+    "INVALID_PASSWORD": "Contraseña inválida"
 }

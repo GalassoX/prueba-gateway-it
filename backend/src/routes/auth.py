@@ -1,28 +1,22 @@
-from data.models.vehicle import Vehicle
 from flask import Blueprint, request, jsonify
 from utils.database import db
+from utils.jwt import encode_token
+from utils.bcrypt import decode_hash, verify_password
 from data.models.owner import Owner
-from data.models.vehicle import Vehicle
 from data.errors import ERRORS
 
-owners = Blueprint('owners', __name__)
+auth = Blueprint('auth', __name__)
 
 
-@owners.get('/owners')
-def get_owners():
-    result = db.session.execute(db.select(Owner)).scalars().all()
-    owners = map(lambda o: o.toJSON(), result)
-    return jsonify(list(owners)), 200
-
-
-@owners.post('/owners')
-def register_owner():
+@auth.post('/signup')
+def register():
     type_doc = None
     document = None
     name = None
     address = None
     phone = None
     mail = None
+    password = None
 
     data = request.json
     errors = []
@@ -61,6 +55,12 @@ def register_owner():
         else:
             errors.append(ERRORS.get("mail"))
 
+        if 'password' in data:
+            password = data['password']
+
+        else:
+            errors.append(ERRORS.get('password'))
+
     exists = db.session.execute(
         db.select(Owner).where(Owner.document == document)
     ).scalars().all()
@@ -71,36 +71,46 @@ def register_owner():
     if len(errors):
         return jsonify({"error": errors}), 400
 
-    new_owner = Owner(type_doc, document, name, address, phone, mail, document)
+    new_owner = Owner(type_doc, document, name, address, phone, mail, password)
     db.session.add(new_owner)
     db.session.commit()
-    return jsonify(new_owner.toJSON()), 201
+    token = encode_token(new_owner.id)
+    return jsonify({"token": token}), 201
 
 
-@owners.get('/owners/<id>')
-def get_owner_by_id(id: str):
-    if not id.isnumeric():
-        return jsonify({'error': ERRORS.get('url_invalid_id')}), 400
+@auth.post('/login')
+def login():
+    email = None
+    password = None
+
+    data = request.json
+    errors = []
+    if data:
+        if 'email' in data:
+            email = data['email']
+        else:
+            errors.append(ERRORS.get("mail"))
+
+        if 'password' in data:
+            password = data['password']
+        else:
+            errors.append(ERRORS.get("password"))
 
     owner = db.session.execute(
-        db.select(Owner).where(Owner.id == id)
-    ).scalars().all()
+        db.select(Owner).where(Owner.mail == email)
+    ).fetchone()
 
-    if len(owner) <= 0:
-        return jsonify({'error': ERRORS.get('user_not_exist')}), 400
+    owner = owner[0]
 
-    return jsonify(owner[0].toJSON()), 200
+    if owner == None:
+        errors.append(ERRORS.get('user_not_exist'))
 
+    if not verify_password(password, owner.password):
+        errors.append(ERRORS.get('password'))
 
-@owners.get('/owners/<id>/vehicles')
-def get_owner_vehicles(id: str):
-    if not id.isnumeric():
-        return jsonify({'error': ERRORS.get('url_invalid_id')}), 400
+    if len(errors):
+        return jsonify({"error": errors}), 400
 
-    vehicles = db.session.execute(
-        db.select(Vehicle).where(Vehicle.owner == id)
-    ).scalars().all()
+    token = encode_token(owner.id, owner.role)
 
-    vehicles = map(lambda o: o.toJSON(), vehicles)
-
-    return jsonify(list(vehicles)), 200
+    return jsonify({"token": token}), 200
