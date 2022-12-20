@@ -13,5 +13,8 @@
     "INVALID_YEAR": "Año inválido",
     "INVALID_COLOR": "Color inválido",
     "INVALID_OWNER": "Dueño inválido",
-    "USER_EXISTS": "Ese usuario ya se encuentra registrado"
+    "USER_EXISTS": "Ese usuario ya se encuentra registrado",
+    "VEHICLE_NOT_EXISTS": "Ese vehículo no existe",
+    "NOTE_IS_SHORT": "La nota es demasiado corta",
+    "INVALID_NOTE": "Texto de la nota inválido"
 }
