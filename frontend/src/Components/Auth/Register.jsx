@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { redirect, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react'
 import getError from '../data/getError';
 import typeDocuments from '../data/type_docs.json'
 import useLogged from '../hooks/useLogged';
 import { signup } from '../service/auth';
-import { createOwner } from '../service/owners';
 
 import styles from './Auth.module.css';
 

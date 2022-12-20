@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Auth from './Auth/Auth';
-import Logout from './Auth/Logout';
 import NotFound from './Components/404';
+import Auth from './Components/Auth/Auth';
+import Logout from './Components/Auth/Logout';
 import Home from './Components/Home/Home';
 import OwnerInfo from './Components/Owners/OwnerInfo/OwnerInfo';
 import Owners from './Components/Owners/Owners';

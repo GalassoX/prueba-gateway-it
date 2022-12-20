@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import getError from '../data/getError';
-import typeDocuments from '../data/type_docs.json'
 import useLogged from '../hooks/useLogged';
 import { login } from '../service/auth';
-import { createOwner } from '../service/owners';
 
 import styles from './Auth.module.css';
 
@@ -27,7 +25,6 @@ const Login = () => {
             .then(response => {
                 if (response.error) {
                     setErrors(response.error);
-                    // console.log(response.error)
                     return;
                 }
                 setToken(response.token);
