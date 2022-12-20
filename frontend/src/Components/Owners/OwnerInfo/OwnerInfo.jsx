@@ -30,13 +30,16 @@ const OwnerInfo = () => {
                     <div className={styles.notes_title}>
                         <h3>Vehículos</h3>
                     </div>
-                    <ol className={styles.notes_list}>
-                        {vehicle.vehicles.map((veh, i) => (
-                            <li key={i}>
-                                <Link to={`/vehiculos/${veh.id}`}>{veh.brand} {veh.model} ({veh.plate})</Link>
-                            </li>
-                        ))}
-                    </ol>
+                    {vehicle.vehicles.length > 0
+                        ? <ol className={styles.notes_list}>
+                            {vehicle.vehicles.map((veh, i) => (
+                                <li key={i}>
+                                    <Link to={`/vehiculos/${veh.id}`}>{veh.brand} {veh.model} ({veh.plate})</Link>
+                                </li>
+                            ))}
+                        </ol>
+                        : <p>Esta persona no tiene vehículos registrados.</p>
+                    }
                 </div>
             </div>
         </>

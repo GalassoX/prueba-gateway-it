@@ -34,7 +34,7 @@ const VehicleInfo = () => {
                         ? <ol className={styles.notes_list}>
                             {vehicle.notes.map((n, i) => <li key={i}>{n.text}</li>)}
                         </ol>
-                        : <p className={styles.no_notes}>Este vehículo no tiene anotaciones</p>
+                        : <p className={styles.no_notes}>Este vehículo no tiene observaciones</p>
                     }
                 </div>
             </div>
