@@ -13,7 +13,6 @@ const VehiclesTable = () => {
 
     useEffect(() => {
         setResult({ ...result, result: vehicles });
-        console.log(vehicles)
     }, [vehicles])
 
     const handleSearchSubmit = () => {

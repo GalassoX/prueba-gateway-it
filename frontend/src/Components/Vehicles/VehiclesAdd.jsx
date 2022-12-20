@@ -33,12 +33,10 @@ const VehiclesAdd = () => {
             year: form.get('year'),
             color: form.get('color')
         }
-        console.log(data)
         sendCreateVehicle(data)
             .then(response => {
                 if (response.error) {
                     setErrors(response.error);
-                    console.log(response.error)
                     return;
                 }
                 window.location.reload();

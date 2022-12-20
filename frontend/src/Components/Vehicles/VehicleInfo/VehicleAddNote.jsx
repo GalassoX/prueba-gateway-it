@@ -20,7 +20,6 @@ const VehicleAddNote = ({ vehicleId }) => {
         const data = {
             note: form.get('note')
         };
-        console.log(data)
         addNote(vehicleId, data).then((response) => {
             response.json().then((data) => {
                 if (data.error) {
