@@ -1,0 +1,1 @@
+Para desplegar los servicios, cada uno tiene un archivo en su carpeta llamada "deploy.txt" en el cual explica como hacerlo

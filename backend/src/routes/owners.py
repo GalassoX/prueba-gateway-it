@@ -26,6 +26,7 @@ def register_owner():
 
     data = request.json
     errors = []
+    # Verificamos si la información enviada por la Request es la deseada
     if data:
         if 'type_doc' in data:
             type_doc = data['type_doc']

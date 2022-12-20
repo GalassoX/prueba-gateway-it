@@ -26,6 +26,7 @@ def register_vehicle():
 
     data = request.json
     errors = []
+    # Verificamos si la información enviada por la Request es la deseada
     if data:
         if 'plate' in data:
             plate = data['plate']
@@ -115,6 +116,7 @@ def add_vehicle_note(id: str):
 
     data = request.json
     errors = []
+    # Verificamos si la información enviada por la Request es la deseada
     if data:
         if 'note' in data:
             note = data['note']
@@ -124,12 +126,14 @@ def add_vehicle_note(id: str):
             errors.append(ERRORS.get('invalid_note'))
 
     if len(errors):
+        # Si no es la deseada, retornamos un array con los errores para que el cliente los detecte
         return jsonify({"error": errors}), 400
 
     vehicle = Vehicle.query.get(id)
     if vehicle == None:
         return jsonify({'error': ERRORS.get('vehicle_not_exists')}), 400
 
+    # Creamos la nota y la insertamos en la base de datos
     new_note = VehicleNote(vehicle.id, note)
     db.session.add(new_note)
     db.session.commit()

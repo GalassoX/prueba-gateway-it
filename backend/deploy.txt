@@ -1,0 +1,16 @@
+Para desplegar el Backend necesitarás tener MySQL y Python instalado
+
+Para hacer el backend se usó Flask como webserver y SQLAlchemy para usar la base de datos y el ORM
+
+primero tiene que crear el entorno virtual con
+
+'virtualenv <nombre-del-entorno>'
+'<nombre-del-entorno>' puede ser cualquier nombre, por lo general se usa 'venv'
+
+Luego activas el entorno con escribiendo en tu terminal
+
+'.\<nombre-del-entorno>\Scripts\activate.bat'
+
+Luego, instalas los paquetes con pip usando el archivo requirements.txt con
+
+pip install -r requirements.txt

@@ -1,0 +1,11 @@
+Para desplegar el Frontend debes tener Node.js instalado 
+
+Para empezar con el despliegue tienes que instalar las dependencias con el comando
+
+'npm install'
+
+en una terminal y luego que termine, usa
+
+'npm start'
+
+para correr la aplicacion en modo debug
